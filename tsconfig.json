@@ -20,7 +20,7 @@
      "declarationMap": true,
     "baseUrl": ".",
      "paths": {
-      "react-vite-library": [ "src/lib/index.ts" ]
+      "@ekaruztech/react-social-auth": [ "src/lib/index.ts" ]
     },
     "typeRoots": [
       "node_modules/@types",

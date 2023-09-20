@@ -17,13 +17,12 @@ jobs:
     name: Create new version ${{ github.event.inputs.version }}
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/nondefyde/react-social-auth.git
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -33,4 +32,6 @@ jobs:
         run: npm version ${{ github.event.inputs.version }}
 
       - name: Push new version tag to repository
-        run: git push origin main --tags
+        run: |
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/nondefyde/react-social-auth.git
+          git push origin main --tags

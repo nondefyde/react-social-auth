@@ -1,9 +1,9 @@
-import {Greet} from "./lib";
+import { Greet } from './lib'
 
 function App() {
   return (
     <>
-      Hello <Greet message={'Geeting here'}/>
+      Hello <Greet message={'Geeting here'} />
     </>
   )
 }

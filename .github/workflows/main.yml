@@ -33,5 +33,6 @@ jobs:
 
       - name: Push new version tag to repository
         run: |
+          git remote -v
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/nondefyde/react-social-auth.git
           git push origin main --tags

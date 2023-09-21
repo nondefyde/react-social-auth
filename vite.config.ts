@@ -10,7 +10,7 @@ import * as packageJson from './package.json'
 export default defineConfig((configEnv) => ({
   plugins: [
     dts({
-      include: ['src/lib/'],
+      include: ['src/lib/index.d.ts'],
     }),
     react(),
     tsConfigPaths(),

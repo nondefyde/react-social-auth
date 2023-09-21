@@ -7,7 +7,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "allowImportingTsExtensions": true,
+    // "allowImportingTsExtensions": true,
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
@@ -24,7 +24,7 @@
     },
     "typeRoots": [
       "node_modules/@types",
-      "src/lib/index.d.ts"
+      // "src/lib/index.d.ts"
     ]
   },
   "include": ["src"],

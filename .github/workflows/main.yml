@@ -18,7 +18,7 @@ on:
 
 jobs:
   version:
-    name: Create new version ${{ github.event.inputs.version || patch }}
+    name: Create new version ${{ github.event.inputs.version || 'patch' }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -35,8 +35,8 @@ jobs:
           node-version: 16.x
           registry-url: https://registry.npmjs.org/
 
-      - name: Generate new version ${{ github.event.inputs.version || patch }}
-        run: npm version ${{ github.event.inputs.version || patch }}
+      - name: Generate new version ${{ github.event.inputs.version || 'patch' }}
+        run: npm version ${{ github.event.inputs.version || 'patch' }}
 
       - name: Push new version tag to repository
         run: |

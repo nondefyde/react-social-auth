@@ -1,8 +1,10 @@
-type GreetProp = {
+import React from 'react';
+
+export type GreetProp = {
   message: string
 }
 
-const Greet = (props: GreetProp) => {
+const Greet: React.FC<GreetProp> = (props) => {
   const { message } = props
   return <h1>{message}</h1>
 }

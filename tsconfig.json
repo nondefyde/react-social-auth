@@ -2,7 +2,11 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "outDir": "dist",
     "allowSyntheticDefaultImports": true,
@@ -17,18 +21,33 @@
     "jsx": "react-jsx",
     "declaration": true,
     "skipLibCheck": true,
-     "esModuleInterop": true ,
-     "declarationMap": true,
+    "esModuleInterop": true,
+    "declarationMap": true,
     "baseUrl": ".",
-     "paths": {
-      "@ekaruztech/react-social-auth": [ "src/lib/index.ts" ]
+    "paths": {
+      "@ekaruztech/react-social-auth": [
+        "src/lib/index.ts"
+      ],
+      "./src/*": ["./types/*"]
     },
     "typeRoots": [
       "node_modules/@types",
-      "src/lib/index.d.ts"
+      "./src/types"
+    ],
+    "types": [
+      "react-social-auth"
     ]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

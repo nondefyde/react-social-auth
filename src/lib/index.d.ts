@@ -1,3 +1,3 @@
-export type App = {
-  type: any
+export type GreetProp = {
+  message: string
 }

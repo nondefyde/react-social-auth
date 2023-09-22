@@ -18,10 +18,11 @@ on:
 
 jobs:
   version:
-    name: Create new version ${{ github.event.inputs.version }}
+    name: Create new version ${{ github.event.inputs.version || patch }}
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - run: |
@@ -34,8 +35,8 @@ jobs:
           node-version: 16.x
           registry-url: https://registry.npmjs.org/
 
-      - name: Generate new version
-        run: npm version ${{ github.event.inputs.version }}
+      - name: Generate new version ${{ github.event.inputs.version || patch }}
+        run: npm version ${{ github.event.inputs.version || patch }}
 
       - name: Push new version tag to repository
         run: |
@@ -43,8 +44,8 @@ jobs:
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/nondefyde/react-social-auth.git
           git push origin main --tags
 
-      - run: yarn
-      - run: yarn build
+      - run: npm install
+      - run: npm run build
       - run: npm publish --access=public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${NPM_TOKEN}

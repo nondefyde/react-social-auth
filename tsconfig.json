@@ -35,7 +35,7 @@
       "./src/types"
     ],
     "types": [
-      "react-social-auth"
+      "./src/types"
     ]
   },
   "include": [

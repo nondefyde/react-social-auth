@@ -40,12 +40,6 @@ jobs:
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/nondefyde/react-social-auth.git
           git push origin main --tags
 
-      - run: npm install
-      - run: npm install -g copyfiles
-
-      - name: Copy type declarations
-        run: cp src/types/*.d.ts dist/
-
       - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${NPM_TOKEN}

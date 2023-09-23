@@ -1,0 +1,51 @@
+name: Generate version and publish
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: New version
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  version:
+    name: Create new version ${{ github.event.inputs.version }}
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          registry-url: https://registry.npmjs.org/
+
+      - name: Generate new version ${{ github.event.inputs.version }}
+        run: npm version ${{ github.event.inputs.version }}
+
+      - name: Push new version tag to repository
+        run: |
+          git remote -v
+          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/nondefyde/react-social-auth.git
+          git push origin main --tags
+
+      - run: npm install
+      - run: npm install -g copyfiles
+
+      - name: Copy type declarations
+        run: cp src/types/*.d.ts dist/
+
+      - run: npm publish --access=public
+        env:
+          NODE_AUTH_TOKEN: ${NPM_TOKEN}

@@ -1,0 +1,44 @@
+{
+  "name": "react-social-auth-lib",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && npm run copy:build",
+    "dev:build": "vite & npm run watch:build",
+    "copy:build": "cp -R dist/ ../dist",
+    "watch:build": "chokidar 'src/lib/**/*' -c 'npm run build'"
+  },
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "react": "16.8.0 || 17.x",
+    "react-dom": "16.8.0 || 17.x",
+    "styled-components": "5.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "2.5.1",
+    "pretty-quick": "3.1.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.4"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/lib.umd.js",
+  "module": "./dist/lib.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/lib.es.js",
+      "require": "./dist/lib.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  }
+}

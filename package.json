@@ -1,0 +1,59 @@
+{
+    "name": "@ekaruztech/react-social-auth",
+    "version": "0.0.0-rc-1",
+    "private": false,
+    "workspaces": {
+        "packages": [
+            "package",
+            "example"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nondefyde/react-social-auth"
+    },
+    "keywords": [
+        "react social login",
+        "social login",
+        "react social oauth",
+        "react social auth"
+    ],
+    "author": "nondefyde",
+    "bugs": {
+        "url": "https://github.com/nondefyde/react-social-auth/issues"
+    },
+    "homepage": "https://github.com/nondefyde/react-social-auth#readme",
+    "license": "MIT",
+    "scripts": {
+        "prepare": "husky install",
+        "dev": "cd package && npm run dev:build",
+        "prepublish": "cd package && npm run build",
+        "patch:version": "npm version patch",
+        "pub": "npm publish --access public",
+        "unpublished": "npm unpublish @ekaruztech/react-social-auth --force"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "package/src/**/*.{js,jsx,ts,tsx}": [
+            "yarn  eslint",
+            "yarn  format"
+        ]
+    },
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/lib.umd.js",
+    "module": "./dist/lib.es.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/lib.es.js",
+            "require": "./dist/lib.umd.js",
+            "types": "./dist/index.d.ts"
+        }
+    }
+}

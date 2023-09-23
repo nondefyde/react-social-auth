@@ -41,6 +41,7 @@ jobs:
           git push origin main --tags
 
       - run: |
+          npm i
           npm run prepublish
           npm publish --access=public
         env:

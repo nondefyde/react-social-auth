@@ -25,12 +25,12 @@
     "homepage": "https://github.com/nondefyde/react-social-auth#readme",
     "license": "MIT",
     "scripts": {
-        "prepare": "husky install",
         "dev": "cd package && npm run dev:build",
         "prepublish": "cd package && npm run build",
         "patch:version": "npm version patch",
         "pub": "npm publish --access public",
-        "unpublished": "npm unpublish @ekaruztech/react-social-auth --force"
+        "unpublished": "npm unpublish @ekaruztech/react-social-auth --force",
+        "prepare": "husky install"
     },
     "husky": {
         "hooks": {
@@ -55,5 +55,8 @@
             "require": "./dist/lib.umd.js",
             "types": "./dist/index.d.ts"
         }
+    },
+    "devDependencies": {
+        "husky": "^8.0.3"
     }
 }

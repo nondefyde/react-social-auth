@@ -4,7 +4,7 @@
     "private": false,
     "workspaces": {
         "packages": [
-            "module",
+            "package",
             "example"
         ]
     },
@@ -26,8 +26,8 @@
     "license": "MIT",
     "scripts": {
         "prepare": "husky install",
-        "dev": "cd module && npm run dev:build",
-        "prepublish": "cd module && npm run build",
+        "dev": "cd package && npm run dev:build",
+        "prepublish": "cd package && npm run build",
         "patch:version": "npm version patch",
         "pub": "npm publish --access public",
         "unpublished": "npm unpublish @ekaruztech/react-social-auth --force"

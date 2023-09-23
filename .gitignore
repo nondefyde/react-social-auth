@@ -6,7 +6,7 @@
 # Node artifact files
 node_modules/
 dist/
-package/dist/
+module/dist/
 example/dist/
 build/
 

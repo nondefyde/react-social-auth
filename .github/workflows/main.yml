@@ -34,15 +34,18 @@ jobs:
       - name: Generate new version ${{ github.event.inputs.version }}
         run: npm version ${{ github.event.inputs.version }}
 
-      - name: Push new version tag to repository
+      - name: Push new version tag to github repository
         run: |
           git remote -v
           git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/nondefyde/react-social-auth.git
           git push origin main --tags
 
-      - run: |
+      - name: Install dependencies
+        run: |
           npm i
           npm run prepublish
-          npm publish --access=public
+
+      - name: Publish package
+        run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${NPM_TOKEN}

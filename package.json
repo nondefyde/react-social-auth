@@ -29,19 +29,7 @@
         "prepublish": "cd package && npm run build",
         "patch:version": "npm version patch",
         "pub": "npm publish --access public",
-        "unpublished": "npm unpublish @ekaruztech/react-social-auth --force",
-        "prepare": "husky install"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "package/src/**/*.{js,jsx,ts,tsx}": [
-            "yarn  eslint",
-            "yarn  format"
-        ]
+        "unpublished": "npm unpublish @ekaruztech/react-social-auth --force"
     },
     "files": [
         "dist"
@@ -55,8 +43,5 @@
             "require": "./dist/lib.umd.js",
             "types": "./dist/index.d.ts"
         }
-    },
-    "devDependencies": {
-        "husky": "^8.0.3"
     }
 }

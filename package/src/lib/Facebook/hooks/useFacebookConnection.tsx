@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import useFacebook from './useFacebook'
 
-interface UseFacebookConnectReturnType {
+interface UseFacebookConnectionReturnType {
   onFacebookConnect: () => void
   isLoading: boolean
   facebookData: Record<string, any>
 }
 
-interface UseFacebookConnectProps {
-  isBusiness?: boolean
+interface UseFacebookConnectionProps {
+  isBusiness?: boolean;
+  scope?: string[]
 }
 
 type FaceBookLoginOption = {
@@ -56,14 +57,16 @@ const businessFacebookOption = {
   // enable_profile_selector: true
 }
 
-const userFacebookOption = {
-  scope: userPermissions.join(','),
-  return_scopes: true,
-}
-const useFacebookConnect = (props: UseFacebookConnectProps): UseFacebookConnectReturnType => {
-  const { isBusiness = false } = props
-  const { isLoading, init } = useFacebook()
 
+const useFacebookConnection = (props: UseFacebookConnectionProps): UseFacebookConnectionReturnType => {
+  const { isBusiness = false, scope = [...userPermissions] } = props
+  const { isLoading, init } = useFacebook();
+
+  const userFacebookOption = {
+    scope: scope.join(','),
+    return_scopes: true,
+  }
+  
   const [options, setOption] = useState<FaceBookLoginOption>(userFacebookOption)
   const [facebookData, setFacebookData] = useState<Record<string, any>>({})
 
@@ -94,4 +97,4 @@ const useFacebookConnect = (props: UseFacebookConnectProps): UseFacebookConnectR
   }
 }
 
-export default useFacebookConnect
+export default useFacebookConnection

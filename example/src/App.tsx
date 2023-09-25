@@ -1,6 +1,6 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import './App.css';
-import {Greet} from "@ekaruztech/react-social-auth";
+import Greet from '../../package/src/lib/Greet'
 
 function App() {
     const [count, setCount] = useState(0);
@@ -9,7 +9,7 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <Greet message={'testing greeting here'}
-                       description={'testing description here'}/>
+                    description={'testing description here'} />
             </header>
         </div>
     );

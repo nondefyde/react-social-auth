@@ -5,8 +5,5 @@ export default {
         "^.+\\.tsx?$": "ts-jest" ,
     // process `*.tsx` files with `ts-jest`
     ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform" 
-    },
-    moduleNameMapper: {
-        '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__ mocks __/fileMock.js',
-    },
+    }
 }

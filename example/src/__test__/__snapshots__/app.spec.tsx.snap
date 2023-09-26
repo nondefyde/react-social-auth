@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Example component Should match snapshot 1`] = `
+exports[`App component Should match snapshot 1`] = `
 {
   "debug": [Function],
   "findAllByAltText": [Function],

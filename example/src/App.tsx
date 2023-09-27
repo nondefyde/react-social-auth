@@ -6,9 +6,7 @@ import { useFacebookConnection } from '../../package/src/lib/Facebook'
 
 function App() {
     const [count, setCount] = useState(0);
-    const { onFacebookConnect, facebookData } = useFacebookConnection({
-        isBusiness: false,
-    })
+    const { onFacebookConnect, facebookData } = useFacebookConnection({})
 
     return (
         <div className="App">

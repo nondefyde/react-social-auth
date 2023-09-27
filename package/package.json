@@ -5,7 +5,8 @@
     "build": "tsc && vite build && npm run copy:build",
     "dev:build": "vite & npm run watch:build",
     "copy:build": "cp -R dist/ ../dist",
-    "watch:build": "chokidar 'src/lib/**/*' -c 'npm run build'"
+    "watch:build": "chokidar 'src/lib/**/*' -c 'npm run build'",
+    "test": "jest test --maxWorkers 2"
   },
   "license": "UNLICENSED",
   "peerDependencies": {

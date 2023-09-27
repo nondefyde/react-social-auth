@@ -43,5 +43,8 @@
             "require": "./dist/lib.umd.js",
             "types": "./dist/index.d.ts"
         }
+    },
+    "devDependencies": {
+        "@testing-library/react-hooks": "^8.0.1"
     }
 }

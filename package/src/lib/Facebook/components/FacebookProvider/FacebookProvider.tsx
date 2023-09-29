@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
-import type { FacebookOptions } from '../utils/facebook'
-import FacebookContext from './FacebookContext'
-import type { FacebookContextInterface } from './FacebookContext'
-import Facebook from '../utils/facebook'
+import type { FacebookOptions } from '../../utils/facebook'
+import FacebookContext from '../FacebookContext/FacebookContext'
+import type { FacebookContextInterface } from '../FacebookContext/FacebookContext'
+import Facebook from '../../utils/facebook'
 
 let api: Facebook | undefined
 

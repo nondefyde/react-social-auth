@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
-import useFacebook from '../../../lib/Facebook/hooks/useFacebook';
-import { FacebookContextInterface } from '../../../lib/Facebook/components/FacebookContext';
+import useFacebook from '../useFacebook';
+import { FacebookContextInterface } from '../../../components/FacebookContext/FacebookContext';
 import { useContext } from 'react';
 
 jest.mock('react', () => {

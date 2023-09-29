@@ -3,9 +3,7 @@ import {Greet} from "./lib";
 import { useFacebookConnection } from "./lib/Facebook";
 
 function App() {
-    const { onFacebookConnect, facebookData } = useFacebookConnection({
-        isBusiness: false,
-    })
+    const { onFacebookConnect, facebookData } = useFacebookConnection({})
     return (
         <Fragment>
             <Greet message={'hello here'} />

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
-import FacebookContext from '../components/FacebookContext'
-import type { FacebookContextInterface } from '../components/FacebookContext'
+import FacebookContext from '../../components/FacebookContext/FacebookContext'
+import type { FacebookContextInterface } from '../../components/FacebookContext/FacebookContext'
 
 export type UseFacebookProps = {
   lazy?: boolean

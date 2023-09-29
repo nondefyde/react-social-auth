@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils'; // Import act for async tests
-import FacebookProvider from '../../../lib/Facebook/components/FacebookProvider';
-import FacebookContext, { FacebookContextInterface } from '../../../lib/Facebook/components/FacebookContext';
-import Facebook from '../../../lib/Facebook/utils/facebook';
+import FacebookProvider from '../FacebookProvider';
+import FacebookContext, { FacebookContextInterface } from '../../FacebookContext/FacebookContext';
+import Facebook from '../../../utils/facebook';
 
-jest.mock('../../../lib/Facebook/utils/facebook', () => {
+jest.mock('../../../utils/facebook', () => {
     return {
         default: jest.fn().mockImplementation(() => ({
             init: jest.fn().mockResolvedValue(undefined),

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import useFacebook from './useFacebook'
+import useFacebook from '../useFacebook/useFacebook'
 
 interface UseFacebookConnectionReturnType {
   onFacebookConnect: () => void

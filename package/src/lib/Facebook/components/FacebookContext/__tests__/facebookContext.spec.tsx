@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { render } from '@testing-library/react';
-import FacebookContext, { FacebookContextInterface } from '../../../lib/Facebook/components/FacebookContext';
+import FacebookContext, { FacebookContextInterface } from '../FacebookContext';
 
 const mockContextValue: FacebookContextInterface = {
   isLoading: false,

@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import Facebook from '../utils/facebook'
+import Facebook from '../../utils/facebook'
 
 export type FacebookContextInterface = {
   isLoading: boolean

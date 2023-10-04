@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom'
 import { render, screen } from "@testing-library/react"
 import App from '../App';
-import { FacebookProvider } from '../../../package/src/lib/Facebook';
+import  FacebookProvider from '../../../package/src/lib/Facebook/components/FacebookProvider/FacebookProvider';
 
-jest.mock('../../../package/src/lib/Facebook/hooks/useFacebookConnection', () => {
+jest.mock('../../../package/src/lib/Facebook/hooks/useFacebookConnection/useFacebookConnection', () => {
   return {
     default: jest.fn(() => ({
       onFacebookConnect: jest.fn(),

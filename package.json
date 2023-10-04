@@ -1,7 +1,7 @@
 {
-    "name": "@ekaruztech/react-social-auth",
-    "version": "0.0.0",
-    "private": true,
+    "name": "@ekaruz/react-social-auth",
+    "version": "0.0.1",
+    "private": false,
     "workspaces": {
         "packages": [
             "package",
@@ -46,5 +46,6 @@
     },
     "devDependencies": {
         "@testing-library/react-hooks": "^8.0.1"
-    }
+    },
+    "dependencies": {}
 }

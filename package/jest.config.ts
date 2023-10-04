@@ -5,5 +5,6 @@ export default {
         "^.+\\.tsx?$": "ts-jest" ,
     // process `*.tsx` files with `ts-jest`
     ".+\\.(css|styl|less|sass|scss)$": "jest-css-modules-transform" 
-    }
+    },
+    testPathIgnorePatterns: ['node_modules', 'dist'],
 }

@@ -1,20 +1,20 @@
 import { useState } from 'react'
 import useFacebook from '../useFacebook/useFacebook'
 
-interface UseFacebookConnectionReturnType {
+export interface UseFacebookConnectionReturnType {
   onFacebookConnect: () => void
   isLoading: boolean
   facebookData: Record<string, any>
   fb: any
 }
 
-interface UseFacebookConnectionProps {
+export interface UseFacebookConnectionProps {
   scope?: string[]
   response_type?: string
   return_scopes?: boolean
 }
 
-type FaceBookLoginOption = {
+export type FaceBookLoginOption = {
   config_id?: string
   response_type?: string
   scope: string

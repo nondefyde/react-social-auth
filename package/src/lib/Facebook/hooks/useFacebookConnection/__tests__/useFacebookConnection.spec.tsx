@@ -1,4 +1,4 @@
-import { renderHook, act } from '@testing-library/react-hooks';
+import { renderHook, act, cleanup } from '@testing-library/react-hooks';
 import useFacebookConnection from '../useFacebookConnection';
 
 jest.mock('../../useFacebook/useFacebook', () => {

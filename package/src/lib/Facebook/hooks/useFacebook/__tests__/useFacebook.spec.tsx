@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, cleanup } from '@testing-library/react-hooks';
 import useFacebook from '../useFacebook';
 import { FacebookContextInterface } from '../../../components/FacebookContext/FacebookContext';
 import { useContext } from 'react';

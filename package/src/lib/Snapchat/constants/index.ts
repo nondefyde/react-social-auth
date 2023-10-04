@@ -1,0 +1,1 @@
+export const RS_SNAPCHAT_OAUTH2_STATE = process.env.RS_SNAPCHAT_OAUTH2_STATE as string;

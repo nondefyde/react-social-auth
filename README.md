@@ -154,6 +154,8 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 | isOnlyGetCode     | boolean          | false       |                                                                       |
 | isOnlyGetToken    | boolean          | false       |                                                                       |
 
+- To obtain a personalized app scope for LinkedIn, you should first create a LinkedIn developer account and complete your app setup. Once your setup is complete, navigate to the "Settings" tab, and be sure to send a verification request to your associated LinkedIn page. Then, proceed to the "Products" section and request access to "Sign In with LinkedIn using OpenID Connect." By taking these steps, you will automatically generate OAuth 2.0 scopes for your app under the "Auth" tab.
+
 - `useSnapchatConnection` hook:
 
 | Parameter         | value           | is required | default value                                                                               |
@@ -171,6 +173,7 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 | onLoginStart      | function        | false       |                                                                                             |
 
 - Our `useSnapchatConnection` hook requires you create a Snapchat Business marketing account, then create an OAuth App under the business details section, thereafter you are given your `Client ID` and `Client Secret`. Do so [Here](https://bit.ly/45hOaWO)
+
 ## Components
 
 - `FacebookProvider` component:

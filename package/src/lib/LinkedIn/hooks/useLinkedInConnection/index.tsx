@@ -54,7 +54,7 @@ const useLinkedInConnection = ({
     clientSecret,
     onResolve,
     onReject,
-    scope = ["openid", "profile", "email", ],
+    scope = ["openid", "profile", "email"],
     state = '',
     closePopupMessage = 'User closed the popup',
     isOnlyGetCode = false,

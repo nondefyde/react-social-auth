@@ -156,21 +156,21 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 
 - `useSnapchatConnection` hook:
 
-| Parameter         | value    | is required | default value                                                                                                                                                                                  |
-|-------------------|----------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| clientId          | string   | true        |                                                                                                                                                                                                |
-| clientKeys        | string   | true        | consist of a combination of your `Client ID` and `Client Secret` separated by a colon `:` from your developer account. For instance, it should be formatted as `clientId:clientSecret`         |
-| redirect_uri      | string   | true        |                                                                                                                                                                                                |
-| state             | string   | false       | A randomly generated string (we recommend keeping the default value).                                                                                                                          |
-| scope             | string   | false       | 'users.read%20tweet.read%20offline.access%20tweet.write' (A string containing scopes seperated by %20 (a single space))                                                                        |
-| onResolve         | function | false       |                                                                                                                                                                                                |
-| onReject          | function | false       |                                                                                                                                                                                                |
-| closePopupMessage | string   | false       | 'User closed the popup'                                                                                                                                                                        |
-| isOnlyGetCode     | boolean  | false       |                                                                                                                                                                                                |
-| isOnlyGetToken    | boolean  | false       |                                                                                                                                                                                                |
-| fields            | string   | false       | 'created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld' (A string containing fields seperated by a comma) |
-| onLoginStart      | function | false       |                                                                                                                                                                                                |
+| Parameter         | value           | is required | default value                                                                               |
+|-------------------|-----------------|-------------|---------------------------------------------------------------------------------------------|
+| clientId          | string          | true        |                                                                                             |
+| clientSecret      | string          | true        |                                                                                             |
+| redirect_uri      | string          | true        |                                                                                             |
+| state             | string          | false       | A randomly generated string (we recommend keeping the default value).                       |
+| scope             | Array of string | false       | ['snapchat-marketing-api','snapchat-profile-api'] (we recommend keeping the default value). |
+| onResolve         | function        | false       |                                                                                             |
+| onReject          | function        | false       |                                                                                             |
+| closePopupMessage | string          | false       | 'User closed the popup'                                                                     |
+| isOnlyGetCode     | boolean         | false       |                                                                                             |
+| isOnlyGetToken    | boolean         | false       |                                                                                             |
+| onLoginStart      | function        | false       |                                                                                             |
 
+- Our `useSnapchatConnection` hook requires you create a Snapchat Business marketing account, then create an OAuth App under the business details section, thereafter you are given your `Client ID` and `Client Secret`. Do so [Here](https://bit.ly/45hOaWO)
 ## Components
 
 - `FacebookProvider` component:

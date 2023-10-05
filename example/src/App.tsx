@@ -24,7 +24,7 @@ function App() {
     const { onLinkedInConnect, linkedInData, isLoading: isLinkedInLoading } = useLinkedInConnection({
         clientId: process.env.RS_LINKEDIN_CLIENT_KEY as string,
         clientSecret: process.env.RS_LINKEDIN_CLIENT_SECRET as string,
-        scope: ["openid", "profile", "email", ],
+        // scope: ["openid", "profile", "email", ],
         redirectUri:  `${window.location.origin}`,
         isOnlyGetToken: true
     })

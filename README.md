@@ -101,7 +101,7 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 
 ## Demo
 
-- In action: []()
+- In actual usage: []()
 
 ## Props
 - `useFacebookConnection` hook:

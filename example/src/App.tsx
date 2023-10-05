@@ -24,18 +24,19 @@ function App() {
     const { onLinkedInConnect, linkedInData, isLoading: isLinkedInLoading } = useLinkedInConnection({
         clientId: process.env.RS_LINKEDIN_CLIENT_KEY as string,
         clientSecret: process.env.RS_LINKEDIN_CLIENT_SECRET as string,
-        scope: ["openid", "profile", "email", ],
-        redirectUri:  `${window.location.origin}`,
+        redirectUri: `${window.location.origin}`,
         isOnlyGetToken: true
     })
-  const {onGoogleConnect, isLoading: isGoogleLoading} = useGoogleConnection({ onSuccess: (tokenResponse: any) => {
-    console.log("google token response",tokenResponse)
-}, redirectUri: window.location.origin})
+    const { onGoogleConnect, isLoading: isGoogleLoading } = useGoogleConnection({
+        onSuccess: (tokenResponse: any) => {
+            console.log("google token response", tokenResponse)
+        }, redirectUri: window.location.origin
+    })
     const [errorMessage, setErrorMessage] = useState<string>('');
 
-    console.log("twitterData:::", twitterData)
-    console.log("snapchatData:::", snapchatData)
-    console.log("linkedInData:::", linkedInData)
+    // console.log("twitterData:::", twitterData)
+    // console.log("snapchatData:::", snapchatData)
+    // console.log("linkedInData:::", linkedInData)
 
     const parse = (search: string) => {
         const query = search.substring(1);
@@ -79,74 +80,74 @@ function App() {
         }
     }, []);
 
-    useEffect(() => {
-        const params = parse(window.location.search) as ParamsType;
+    // useEffect(() => {
+    //     const params = parse(window.location.search) as ParamsType;
 
-        if (params.state !== localStorage.getItem(`${process.env.RS_SNAPCHAT_OAUTH2_STATE}`)) {
-            setErrorMessage('State does not match');
+    //     if (params.state !== localStorage.getItem(`${process.env.RS_SNAPCHAT_OAUTH2_STATE}`)) {
+    //         setErrorMessage('State does not match');
 
-        } else if (params.error) {
-            const errorMessage =
-                params.error_description || 'Login failed. Please try again.';
+    //     } else if (params.error) {
+    //         const errorMessage =
+    //             params.error_description || 'Login failed. Please try again.';
 
-            window.opener &&
-                window.opener.postMessage(
-                    {
-                        error: params.error,
-                        state: params.state,
-                        errorMessage,
-                        from: 'Snapchat',
-                    },
-                    window.location.origin,
-                );
-            window.close();
+    //         window.opener &&
+    //             window.opener.postMessage(
+    //                 {
+    //                     error: params.error,
+    //                     state: params.state,
+    //                     errorMessage,
+    //                     from: 'Snapchat',
+    //                 },
+    //                 window.location.origin,
+    //             );
+    //         window.close();
 
-            // Close tab if user cancelled login
-            if (params.error === 'user_cancelled_login') {
-                window.close();
-            }
-        }
-        if (params.code) {
-            window.opener &&
-                window.opener.postMessage(
-                    { code: params.code, state: params.state, from: 'Snapchat' },
-                    window.location.origin,
-                );
-            window.close();
-        }
-    }, []);
+    //         // Close tab if user cancelled login
+    //         if (params.error === 'user_cancelled_login') {
+    //             window.close();
+    //         }
+    //     }
+    //     if (params.code) {
+    //         window.opener &&
+    //             window.opener.postMessage(
+    //                 { code: params.code, state: params.state, from: 'Snapchat' },
+    //                 window.location.origin,
+    //             );
+    //         window.close();
+    //     }
+    // }, []);
 
-    useEffect(() => {
-        const params = parse(window.location.search) as ParamsType;
-        if (params.state !== localStorage.getItem(`${process.env.RS_LINKEDIN_OAUTH2_STATE}`)) {
-          setErrorMessage('State does not match');
-        } else if (params.error) {
-          const errorMessage =
-            params.error_description || 'Login failed. Please try again.';
-          window.opener &&
-            window.opener.postMessage(
-              {
-                error: params.error,
-                state: params.state,
-                errorMessage,
-                from: 'LinkedIn',
-              },
-              window.location.origin,
-            );
-          // Close tab if user cancelled login
-          if (params.error === 'user_cancelled_login') {
-            window.close();
-          }
-        }
-        if (params.code) {
-          window.opener &&
-            window.opener.postMessage(
-              { code: params.code, state: params.state, from: 'LinkedIn' },
-              window.location.origin,
-            );
-            window.close();
-        }
-      }, []);
+    // useEffect(() => {
+    //     const params = parse(window.location.search) as ParamsType;
+    //     if (params.state !== localStorage.getItem(`${process.env.RS_LINKEDIN_OAUTH2_STATE}`)) {
+    //       setErrorMessage('State does not match');
+    //     } else if (params.error) {
+    //       const errorMessage =
+    //         params.error_description || 'Login failed. Please try again.';
+    //       window.opener &&
+    //         window.opener.postMessage(
+    //           {
+    //             error: params.error,
+    //             state: params.state,
+    //             errorMessage,
+    //             from: 'LinkedIn',
+    //           },
+    //           window.location.origin,
+    //         );
+    //       // Close tab if user cancelled login
+    //       if (params.error === 'user_cancelled_login') {
+    //         window.close();
+    //       }
+    //     }
+    //     if (params.code) {
+    //       window.opener &&
+    //         window.opener.postMessage(
+    //           { code: params.code, state: params.state, from: 'LinkedIn' },
+    //           window.location.origin,
+    //         );
+    //         window.close();
+    //     }
+    //   }, []);
     return (
         <div className="App">
             <header className="App-header">

@@ -53,15 +53,10 @@ import React, { useState } from 'react';
 import { useTwitterConnection } from '@ekaruz/react-social-auth';
 
 function TwitterPage() {
-  const { onTwitterConnect, twitterData, isLoading } = useTwitterConnection({ clientId:'texcdfgr',  clientKeys:'gvbhgtyh', redirect_uri: REDIRECT_URI, isOnlyGetCode: true });
- const { data: {code} } = twitterData
+  const { onTwitterConnect, isLoading, twitterData} = useTwitterConnection({ clientId:'texcdfgr',  clientKeys:'gvbhgtyh', redirect_uri: REDIRECT_URI, isOnlyGetCode: true });
 
   return (
-    <>
     <button disabled={isLoading} onClick={onTwitterConnect}>Sign in with Twitter</button>
-    <div>{code}</div>
-    </>
-
   );
 }
 ```

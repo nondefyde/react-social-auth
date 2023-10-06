@@ -6,8 +6,6 @@
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-[![npm package][npm-badge]][npm]
 [![npm](https://img.shields.io/npm/dt/@ekaruz/react-social-auth)](https://www.npmjs.com/package/@ekaruz/react-social-auth)
 
 
@@ -56,11 +54,13 @@ import { useTwitterConnection } from '@ekaruz/react-social-auth';
 
 function TwitterPage() {
   const { onTwitterConnect, twitterData, isLoading } = useTwitterConnection({ clientId:'texcdfgr',  clientKeys:'gvbhgtyh', redirect_uri: REDIRECT_URI, isOnlyGetCode: true });
-
+ const { data: {code} } = twitterData
 
   return (
-  <button disabled={isLoading} onClick={onTwitterConnect}>Sign in with Twitter</button>
-  <div>{twitterData}</div>
+    <>
+    <button disabled={isLoading} onClick={onTwitterConnect}>Sign in with Twitter</button>
+    <div>{code}</div>
+    </>
 
   );
 }

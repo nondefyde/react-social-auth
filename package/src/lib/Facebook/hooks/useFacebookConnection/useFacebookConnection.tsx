@@ -10,8 +10,8 @@ export interface UseFacebookConnectionReturnType {
 
 export interface UseFacebookConnectionProps {
   scope?: string[]
-  response_type?: string
-  return_scopes?: boolean
+  responseType?: string
+  returnScopes?: boolean
 }
 
 export type FaceBookLoginOption = {
@@ -28,13 +28,13 @@ const defaultPermissions: string[] = [
 ]
 
 const useFacebookConnection = (props: UseFacebookConnectionProps): UseFacebookConnectionReturnType => {
-  const { scope = [...defaultPermissions], response_type, return_scopes = true } = props
+  const { scope = [...defaultPermissions], responseType, returnScopes = true } = props
   const { isLoading, init } = useFacebook();
 
   const userFacebookOption = {
     scope: scope.join(','),
-    response_type,
-    return_scopes,
+    response_type: responseType,
+    return_scopes: returnScopes,
   }
   
   const [options, setOption] = useState<FaceBookLoginOption>(userFacebookOption)

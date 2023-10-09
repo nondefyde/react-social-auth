@@ -9,7 +9,7 @@ export interface useLinkedInConnectionProps {
     onReject?: (reject: string | objectType) => void;
     onResolve?: ({ provider, data }: IResolveParams) => void;
     state?: string;
-    scope?: Array<string>;
+    scope: Array<string>;
     closePopupMessage?: string;
     isOnlyGetCode?: boolean;
     isOnlyGetToken?: boolean;
@@ -54,7 +54,7 @@ const useLinkedInConnection = ({
     clientSecret,
     onResolve,
     onReject,
-    scope = ["openid", "profile", "email"],
+    scope,
     state = '',
     closePopupMessage = 'User closed the popup',
     isOnlyGetCode = false,
@@ -72,7 +72,7 @@ const useLinkedInConnection = ({
             fetch(url, {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${data.access_token}`,
+                    Authorization: `Bearer ${data?.access_token}`,
                     'x-cors-grida-api-key': RS_PASS_CORS_KEY,
                 },
             })
@@ -128,7 +128,7 @@ const useLinkedInConnection = ({
                         onReject?.(err)
                         setIsLoading(false)
                     });
-                if (data.access_token) {
+                if (data?.access_token) {
                     if (isOnlyGetToken) {
                         onResolve?.({ provider: 'linkedin', data });
                         setLinkedInData({ provider: 'linkedin', data })

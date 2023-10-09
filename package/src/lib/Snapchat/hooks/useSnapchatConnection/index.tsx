@@ -10,7 +10,7 @@ export interface useSnapChatConnectionReturnType {
 export interface useSnapChatConnectionProps {
     clientId: string;
     clientSecret: string;
-    redirect_uri: string;
+    redirectUri: string;
     scope?: Array<string>;
     onReject?: (reject: string | objectType) => void;
     onResolve?: ({ provider, data }: IResolveParams) => void;
@@ -41,7 +41,7 @@ const generateRandomString = (length = 20) => {
 };
 
 const useSnapChatConnection = (props: useSnapChatConnectionProps): useSnapChatConnectionReturnType => {
-    const { clientId, clientSecret, redirect_uri, scope =['snapchat-marketing-api', 'snapchat-profile-api']
+    const { clientId, clientSecret, redirectUri, scope =['snapchat-marketing-api', 'snapchat-profile-api']
     , closePopupMessage = 'User closed the popup', onReject, onResolve, onLoginStart, state, isOnlyGetCode = false,
         isOnlyGetToken = false, } = props
     const [snapchatData, setSnapchatData] = useState<Record<string, any> | null>(null);
@@ -59,7 +59,7 @@ const useSnapChatConnection = (props: useSnapChatConnectionProps): useSnapChatCo
 
                 const payload: Record<string, any> = {
                     code,
-                    redirect_uri,
+                    redirect_uri:redirectUri,
                     client_id: clientId,
                     client_secret: clientSecret,
                     grant_type: `authorization_code`,
@@ -87,7 +87,7 @@ const useSnapChatConnection = (props: useSnapChatConnectionProps): useSnapChatCo
                         onReject?.(err)
                         setIsLoading(false)
                     });
-                if (data.access_token) {
+                if (data?.access_token) {
                     if (isOnlyGetToken) {
                         onResolve?.({ provider: 'snapchat', data });
                         setSnapchatData({ provider: 'snapchat', data })
@@ -100,7 +100,7 @@ const useSnapChatConnection = (props: useSnapChatConnectionProps): useSnapChatCo
             onReject,
             onResolve,
             clientId,
-            redirect_uri,
+            redirectUri,
             isOnlyGetCode,
             isOnlyGetToken,
         ],
@@ -175,7 +175,7 @@ const useSnapChatConnection = (props: useSnapChatConnectionProps): useSnapChatCo
         localStorage.setItem(RS_SNAPCHAT_OAUTH2_STATE, generatedState);
         const scope = ['snapchat-marketing-api', 'snapchat-profile-api']
         const scopes = scope.join(" ")
-        const oauthUrl = `https://accounts.snapchat.com/login/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}&scope=${scopes}&state=${generatedState}`
+        const oauthUrl = `https://accounts.snapchat.com/login/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&state=${generatedState}`
         return oauthUrl;
     };
 
@@ -213,7 +213,7 @@ const useSnapChatConnection = (props: useSnapChatConnectionProps): useSnapChatCo
     }, [
         scope,
         clientId,
-        redirect_uri,
+        redirectUri,
         state,
         onChangeLocalStorage,
         onLoginStart,

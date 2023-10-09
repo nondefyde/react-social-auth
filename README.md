@@ -23,6 +23,7 @@ Using this package is straightforward. You simply need to call the appropriate h
 See [Usage](#usage) and [Demo](#demo) for guidelines.
 ## Table of contents
 
+- [Changelog](#changelog)
 - [Installation](#installation)
 - [Overview](#overview)
 - [Usage](#usage)
@@ -33,6 +34,9 @@ See [Usage](#usage) and [Demo](#demo) for guidelines.
 - [Issues](#issues)
 
 
+## Changelog
+
+See [CHANGELOG.md](https://github.com/nondefyde/react-social-auth/blob/main/CHANGELOG.md)
 ## Installation
 
 ```
@@ -53,7 +57,7 @@ import React, { useState } from 'react';
 import { useTwitterConnection } from '@ekaruz/react-social-auth';
 
 function TwitterPage() {
-  const { onTwitterConnect, isLoading, twitterData} = useTwitterConnection({ clientId:'texcdfgr',  clientKeys:'gvbhgtyh', redirect_uri: REDIRECT_URI, isOnlyGetCode: true });
+  const { onTwitterConnect, isLoading, twitterData} = useTwitterConnection({ clientId:'texcdfgr',  clientKeys:'gvbhgtyh', redirectUri: REDIRECT_URI, isOnlyGetCode: true });
 
   return (
     <button disabled={isLoading} onClick={onTwitterConnect}>Sign in with Twitter</button>
@@ -96,13 +100,16 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 
 ## Demo
 
-- In actual usage: []()
+- In actual usage: [https://ekaruz-react-social-oauth.vercel.app/](https://ekaruz-react-social-oauth.vercel.app/)
 
 ## Props
 - `useFacebookConnection` hook:
 
-| Parameter | value | is required | default value |
-|-----------|-------|-------------|---------------|
+| Parameter    | value           | is required | default value              |
+|--------------|-----------------|-------------|----------------------------|
+| scope        | Array of string | false       | ['email','public_profile'] |
+| responseType | string          | false       |                            |
+| returnScopes | boolean         | false       |                            |
 
 - `useGoogleConnection` hook:
 
@@ -123,7 +130,7 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 |-------------------|----------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | clientId          | string   | true        |                                                                                                                                                                                                |
 | clientKeys        | string   | true        | consist of a combination of your `Client ID` and `Client Secret` separated by a colon `:` from your developer account. For instance, it should be formatted as `clientId:clientSecret`         |
-| redirect_uri      | string   | true        |                                                                                                                                                                                                |
+| redirectUri       | string   | true        |                                                                                                                                                                                                |
 | state             | string   | false       | A randomly generated string (we recommend keeping the default value).                                                                                                                          |
 | scope             | string   | false       | 'users.read%20tweet.read%20offline.access%20tweet.write' (A string containing scopes seperated by %20 (a single space))                                                                        |
 | onResolve         | function | false       |                                                                                                                                                                                                |
@@ -136,18 +143,18 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 
 - `useLinkedInConnection` hook:
 
-| Parameter         | value            | is required | default value                                                         |
-|-------------------|------------------|-------------|-----------------------------------------------------------------------|
-| clientId          | string           | true        |                                                                       |
-| clientSecret      | string           | true        |                                                                       |
-| redirectUri       | string           | true        |                                                                       |
-| state             | string           | false       | A randomly generated string (we recommend keeping the default value). |
-| scope             | Array of string | false       | ["openid", "profile","email"]                                         |
-| onResolve         | function         | false       |                                                                       |
-| onReject          | function         | false       |                                                                       |
-| closePopupMessage | string           | false       | User closed the popup                                                 |
-| isOnlyGetCode     | boolean          | false       |                                                                       |
-| isOnlyGetToken    | boolean          | false       |                                                                       |
+| Parameter         | value           | is required | default value                                                         |
+|-------------------|-----------------|-------------|-----------------------------------------------------------------------|
+| clientId          | string          | true        |                                                                       |
+| clientSecret      | string          | true        |                                                                       |
+| redirectUri       | string          | true        |                                                                       |
+| state             | string          | false       | A randomly generated string (we recommend keeping the default value). |
+| scope             | Array of string | true        |                                                                       |
+| onResolve         | function        | false       |                                                                       |
+| onReject          | function        | false       |                                                                       |
+| closePopupMessage | string          | false       | User closed the popup                                                 |
+| isOnlyGetCode     | boolean         | false       |                                                                       |
+| isOnlyGetToken    | boolean         | false       |                                                                       |
 
 - To obtain a personalized app scope for LinkedIn, you should first create a LinkedIn developer account and complete your app setup. Once your setup is complete, navigate to the "Settings" tab, and be sure to send a verification request to your associated LinkedIn page. Then, proceed to the "Products" section and request access to "Sign In with LinkedIn using OpenID Connect." By taking these steps, you will automatically generate OAuth 2.0 scopes for your app under the "Auth" tab.
 
@@ -157,7 +164,7 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 |-------------------|-----------------|-------------|---------------------------------------------------------------------------------------------|
 | clientId          | string          | true        |                                                                                             |
 | clientSecret      | string          | true        |                                                                                             |
-| redirect_uri      | string          | true        |                                                                                             |
+| redirectUri      | string          | true        |                                                                                             |
 | state             | string          | false       | A randomly generated string (we recommend keeping the default value).                       |
 | scope             | Array of string | false       | ['snapchat-marketing-api','snapchat-profile-api'] (we recommend keeping the default value). |
 | onResolve         | function        | false       |                                                                                             |
@@ -173,15 +180,31 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 
 - `FacebookProvider` component:
 
-| Parameter | value  | is required |
-|-----------|--------|-------------|
-| appId     | string | true        |
+| Parameter            | value     | is required | default value |
+|----------------------|-----------|-------------|---------------|
+| appId                | string    | true        |               |
+| children             | ReactNode | true        |               |
+| domain               | string    | false       |               |
+| version              | string    | false       |               |
+| cookie               | boolean   | false       |               |
+| status               | boolean   | false       |               |
+| xfbml                | boolean   | false       |               |
+| language             | string    | false       |               |
+| frictionlessRequests | boolean   | false       |               |
+| debug                | boolean   | false       |               |
+| chatSupport          | boolean   | false       |               |
+| autoLogAppEvents     | boolean   | false       |               |
+| lazy                 | boolean   | false       |               |
 
 - `GoogleOAuthProvider` component:
 
-| Parameter | value  | is required |
-|-----------|--------|-------------|
-| clientId  | string | true        |
+| Parameter           | value     | is required | default value |
+|---------------------|-----------|-------------|---------------|
+| clientId            | string    | true        |               |
+| children            | ReactNode | true        |               |
+| nonce               | string    | false       |               |
+| onScriptLoadSuccess | function  | false       |               |
+| onScriptLoadError   | function  | false       |               |
 
 - The `useFacebookConnection` and `useGoogleConnection` hooks should be employed within their corresponding providers, namely `FacebookProvider` and `GoogleOAuthProvider`, respectively.
 

@@ -11,7 +11,7 @@ export interface UseTwitterConnectionReturnType {
 export interface UseTwitterConnectionProps {
     clientId: string;
     clientKeys: string
-    redirect_uri: string;
+    redirectUri: string;
     state?: string;
     fields?: string;
     scope?: string;
@@ -49,7 +49,7 @@ const generateRandomString = (length = 20) => {
 const useTwitterConnection = (props: UseTwitterConnectionProps): UseTwitterConnectionReturnType => {
     const { clientId,
         clientKeys,
-        redirect_uri,
+        redirectUri,
         fields = 'created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,public_metrics,url,username,verified,withheld',
         state,
         scope = 'users.read%20tweet.read%20offline.access%20tweet.write',
@@ -72,7 +72,7 @@ const useTwitterConnection = (props: UseTwitterConnectionProps): UseTwitterConne
             fetch(url, {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${data.access_token}`,
+                    Authorization: `Bearer ${data?.access_token}`,
                     'x-cors-grida-api-key': RS_PASS_CORS_KEY,
                 },
             })
@@ -99,7 +99,7 @@ const useTwitterConnection = (props: UseTwitterConnectionProps): UseTwitterConne
             else {
                 const payload: Record<string, any> = {
                     code,
-                    redirect_uri,
+                    redirect_uri: redirectUri,
                     client_id: clientId,
                     grant_type: 'authorization_code',
                     code_verifier: 'challenge',
@@ -130,7 +130,7 @@ const useTwitterConnection = (props: UseTwitterConnectionProps): UseTwitterConne
                         setIsLoading(false)
                     });
 
-                if (data.access_token) {
+                if (data?.access_token) {
                     if (isOnlyGetToken) {
                         onResolve?.({ provider: 'twitter', data });
                         setTwitterData({ provider: 'twitter', data })
@@ -144,7 +144,7 @@ const useTwitterConnection = (props: UseTwitterConnectionProps): UseTwitterConne
             onReject,
             onResolve,
             clientId,
-            redirect_uri,
+            redirectUri,
             isOnlyGetCode,
             isOnlyGetToken,
         ],
@@ -215,7 +215,7 @@ const useTwitterConnection = (props: UseTwitterConnectionProps): UseTwitterConne
     const getUrl = () => {
         const generatedState = state || generateRandomString();
         localStorage.setItem(RS_TWITTER_OAUTH2_STATE, generatedState);
-        const oauthUrl = `${TWITTER_URL}/i/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirect_uri}&scope=${scope}&state=${generatedState}&code_challenge=challenge&code_challenge_method=plain`;
+        const oauthUrl = `${TWITTER_URL}/i/oauth2/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&state=${generatedState}&code_challenge=challenge&code_challenge_method=plain`;
         return oauthUrl;
     };
 
@@ -267,7 +267,7 @@ const useTwitterConnection = (props: UseTwitterConnectionProps): UseTwitterConne
         state,
         clientId,
         onLoginStart,
-        redirect_uri,
+        redirectUri,
         onChangeLocalStorage,
     ]);
 

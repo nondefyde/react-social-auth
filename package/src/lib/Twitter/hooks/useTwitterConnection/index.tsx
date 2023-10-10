@@ -66,10 +66,10 @@ const useTwitterConnection = (props: UseTwitterConnectionProps): UseTwitterConne
     const popUpIntervalRef = useRef<number | null>(null);
 
     const getProfile = useCallback(
-        (data: objectType) => {
+        async (data: objectType) => {
             const url = `${PREVENT_CORS_URL}/${TWITTER_API_URL}/2/users/me?user.fields=${fields}`;
             setIsLoading(true)
-            fetch(url, {
+            await fetch(url, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${data?.access_token}`,

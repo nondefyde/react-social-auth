@@ -66,10 +66,10 @@ const useLinkedInConnection = ({
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const getProfile = useCallback(
-        (data: objectType) => {
+        async (data: objectType) => {
             const url = `${PREVENT_CORS_URL}/https://api.linkedin.com/v2/me`;
             setIsLoading(true)
-            fetch(url, {
+            await fetch(url, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${data?.access_token}`,

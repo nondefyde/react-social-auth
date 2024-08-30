@@ -1,19 +1,17 @@
-import React, {Fragment} from 'react'
-
 export type GreetProp = {
-    message: string
-    description?: string
-}
+    message: string;
+    description?: string;
+};
 
-const Greet: React.FC<GreetProp> = (props) => {
-    const {message, description} = props
+const Greet = (props: GreetProp) => {
+    const { message, description } = props;
     return (
-        <Fragment>
+        <>
             Another testing
             <h1>{message}</h1>
             <p>{description}</p>
-        </Fragment>
-    )
-}
+        </>
+    );
+};
 
-export default Greet
+export default Greet;

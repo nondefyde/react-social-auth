@@ -16,6 +16,7 @@ export interface IResolveParams {
 
 export interface useGoogleConnectionProps {
     redirectUri: string;
+    responseType?: 'code' | 'token',
     onError?: (response:any) => void;
     onSuccess: (response:any) => void;
     state?: string;
@@ -34,57 +35,68 @@ export default function useGoogleConnection(props: useGoogleConnectionProps): us
     const {
         flow = 'implicit',
         scope = '',
+        responseType = 'code',
         onSuccess,
         onError,
         onNonOAuthError,
-        overrideScope= false,
+        overrideScope = false,
         state,
         redirectUri
     } = props;
 
-    const {clientId, scriptLoadedSuccessfully} = useGoogleOAuth();
-    const clientRef = useRef<any>();
+    const { clientId, scriptLoadedSuccessfully } = useGoogleOAuth();
+    const clientRef = useRef<any>(null);
 
     const onSuccessRef = useRef(onSuccess);
-    onSuccessRef.current = onSuccess;
-
     const onErrorRef = useRef(onError);
-    onErrorRef.current = onError;
-
     const onNonOAuthErrorRef = useRef(onNonOAuthError);
-    onNonOAuthErrorRef.current = onNonOAuthError;
 
     useEffect(() => {
-
-    }, [scriptLoadedSuccessfully])
+        onSuccessRef.current = onSuccess;
+    }, [onSuccess]);
 
     useEffect(() => {
-        if (!scriptLoadedSuccessfully) return;
+        onErrorRef.current = onError;
+    }, [onError]);
 
-        clientRef.current = window?.google?.accounts.oauth2['initCodeClient']({
+    useEffect(() => {
+        onNonOAuthErrorRef.current = onNonOAuthError;
+    }, [onNonOAuthError]);
+
+    useEffect(() => {
+        if (!scriptLoadedSuccessfully || !clientId) return;
+
+        clientRef.current = window?.google?.accounts.oauth2[
+            responseType === 'token' ? 'initTokenClient' : 'initCodeClient'
+        ]({
             client_id: clientId,
-            response_type: 'code',
-            access_type: 'offline',
+            response_type: responseType,
+            access_type: responseType !== 'token' ? undefined : 'offline',
             redirect_uri: redirectUri,
             scope: overrideScope ? scope : `openid profile email ${scope}`,
             callback: (response: any) => {
-                console.log('response ::: ', response);
-                if (response.error) return onErrorRef.current?.(response);
-
-                onSuccessRef.current?.(response as any);
+                if (response.error) {
+                    onErrorRef.current?.(response);
+                    return;
+                }
+                onSuccessRef.current?.(response);
             },
             error_callback: (nonOAuthError: NonOAuthError) => {
                 onNonOAuthErrorRef.current?.(nonOAuthError);
             },
             state,
-            ...props,
         });
-    }, [clientId, scriptLoadedSuccessfully, flow, scope, state]);
+    }, [clientId, scriptLoadedSuccessfully, flow, scope, state, responseType, redirectUri, overrideScope]);
 
-    const loginAuthCodeFlow = useCallback(
-        () => clientRef.current?.requestCode(),
-        [],
-    );
+    const loginAuthCodeFlow = useCallback(() => {
+        if (clientRef.current) {
+            if (responseType === 'token') {
+                clientRef.current.requestAccessToken();
+            } else {
+                clientRef.current.requestCode();
+            }
+        }
+    }, [responseType]);
 
     return {
         onGoogleConnect: loginAuthCodeFlow,

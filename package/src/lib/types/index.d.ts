@@ -67,6 +67,7 @@ export declare interface useLinkedInConnectionReturnType {
 }
 export declare interface useGoogleConnectionType {
     redirectUri: string;
+    responseType?: 'code' | 'token',
     onError?: (response:any) => void;
     onSuccess: (response:any) => void;
     state?: string;
@@ -78,6 +79,7 @@ export declare interface useGoogleConnectionType {
 
 export declare interface useGoogleConnectionProps {
     redirectUri: string;
+    responseType?: 'code' | 'token',
     onError?: (response:any) => void;
     onSuccess: (response:any) => void;
     state?: string;

@@ -67,7 +67,7 @@ describe('useTwitterConnection', () => {
   const defaultProps: UseTwitterConnectionProps = {
     clientId: process.env.RS_TWITTER_CLIENT_KEY as string,
     clientKeys: `${btoa(process.env.RS_TWITTER_CLIENT_KEYS as string)}`,
-    redirect_uri: 'http://example.com/callback',
+    redirectUri: 'http://example.com/callback',
     onLoginStart: jest.fn(),
     onReject: jest.fn(),
     onResolve: jest.fn(),

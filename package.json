@@ -1,6 +1,6 @@
 {
     "name": "@ekaruz/react-social-auth",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "private": false,
     "workspaces": {
         "packages": [

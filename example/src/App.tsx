@@ -27,8 +27,6 @@ function App() {
         }, redirectUri: window.location.origin
     })
 
-    // console.log("twitterData:::", twitterData)
-    // console.log("snapchatData:::", snapchatData)
     console.log("linkedInData:::", linkedInData)
 
     return (

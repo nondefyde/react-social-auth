@@ -113,16 +113,17 @@ Important Note: Callback pages are required only for Twitter, Snapchat, and Link
 
 - `useGoogleConnection` hook:
 
-| Parameter       | value    | is required | default value |
-|-----------------|----------|-------------|---------------|
-| redirectUri     | string   | true        |               |
-| state           | string   | false       | ''            |
-| scope           | string   | false       |               |
-| flow            | string   | false       | 'implicit'    |
-| onSuccess       | function | true        |               |
-| onError         | function | false       |               |
-| overrideScope   | boolean  | false       | false         |
-| onNonOAuthError | function | false       |               |
+| Parameter       | value             | is required | default value |
+|-----------------|-------------------|-------------|---------------|
+| redirectUri     | string            | true        |               |
+| responseType    | 'code' \| 'token' | false       | 'code'        |
+| state           | string            | false       | ''            |
+| scope           | string            | false       |               |
+| flow            | string            | false       | 'implicit'    |
+| onSuccess       | function          | true        |               |
+| onError         | function          | false       |               |
+| overrideScope   | boolean           | false       | false         |
+| onNonOAuthError | function          | false       |               |
 
 - `useTwitterConnection` hook:
 

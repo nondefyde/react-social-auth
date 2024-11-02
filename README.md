@@ -253,4 +253,4 @@ We extend our gratitude to these exceptional individuals:([emoji key](https://al
 
 This project adheres to the [allcontributors](https://github.com/all-contributors/all-contributors) standard, and we enthusiastically welcome contributions of any nature.
 
-Thank You.
+Thank You
